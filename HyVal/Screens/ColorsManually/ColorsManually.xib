@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ColorsManually" customModule="HyVal" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="F6G-yY-Kgg" id="I02-ig-tDw"/>
+                <outlet property="continueButton" destination="4fN-pd-pNi" id="lWK-nc-lnq"/>
+                <outlet property="pickerView" destination="ZDM-jA-7LI" id="E7F-yg-kaK"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unifortunatelly the matching was not found. Please match the colors manually" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKQ-o6-fMa">
+                    <rect key="frame" x="20" y="69" width="374" height="58"/>
+                    <fontDescription key="fontDescription" name="CourierNewPS-BoldItalicMT" family="Courier New" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZDM-jA-7LI">
+                    <rect key="frame" x="20" y="147" width="374" height="298.5"/>
+                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="F6G-yY-Kgg">
+                    <rect key="frame" x="20" y="470.5" width="374" height="425.5"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dti-D3-DsD">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fN-pd-pNi">
+                    <rect key="frame" x="244" y="782" width="120" height="50"/>
+                    <color key="backgroundColor" red="0.68565899129999996" green="0.70307111739999995" blue="0.74602204559999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="rhD-4n-91c"/>
+                        <constraint firstAttribute="height" constant="50" id="ri2-im-DRJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                    <state key="normal" title="Continue">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="continueButtonAction:" destination="-1" eventType="touchUpInside" id="AqH-RI-dYS"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="ZDM-jA-7LI" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="1/3" id="0qV-n2-hcs"/>
+                <constraint firstAttribute="bottom" secondItem="F6G-yY-Kgg" secondAttribute="bottom" id="14x-up-fPk"/>
+                <constraint firstItem="JKQ-o6-fMa" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="25" id="3tb-n0-lFp"/>
+                <constraint firstItem="ZDM-jA-7LI" firstAttribute="top" secondItem="JKQ-o6-fMa" secondAttribute="bottom" constant="20" id="6cB-Fc-bkv"/>
+                <constraint firstItem="JKQ-o6-fMa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="DWY-gR-yjg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="4fN-pd-pNi" secondAttribute="bottom" constant="30" id="GMi-Zs-p5j"/>
+                <constraint firstItem="F6G-yY-Kgg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="KyY-Eq-z7e"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4fN-pd-pNi" secondAttribute="trailing" constant="50" id="P2Q-Gz-aKU"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="JKQ-o6-fMa" secondAttribute="trailing" constant="20" id="RlR-cZ-ayQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZDM-jA-7LI" secondAttribute="trailing" constant="20" id="ch7-rx-bFJ"/>
+                <constraint firstItem="F6G-yY-Kgg" firstAttribute="top" secondItem="ZDM-jA-7LI" secondAttribute="bottom" constant="25" id="hwE-No-ba3"/>
+                <constraint firstItem="ZDM-jA-7LI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="oTS-ej-i1r"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="F6G-yY-Kgg" secondAttribute="trailing" constant="20" id="q36-pR-azH"/>
+            </constraints>
+            <point key="canvasLocation" x="140.57971014492756" y="119.86607142857142"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
