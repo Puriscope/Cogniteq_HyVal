@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AC41D8AAC888AD2B31298BDA /* Pods_HyVal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20AC1C827D6BE43613D22F3C /* Pods_HyVal.framework */; };
+		E26019EA26525695000A059B /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26019E926525695000A059B /* RealmManager.swift */; };
 		E2622CD1263AAE10001D02DD /* WelcomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2622CD0263AAE10001D02DD /* WelcomePresenter.swift */; };
 		E2622CD8263AB973001D02DD /* AssemblyModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2622CD7263AB973001D02DD /* AssemblyModuleBuilder.swift */; };
 		E2622CDB263AC74E001D02DD /* BlankComparisonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2622CDA263AC74E001D02DD /* BlankComparisonPresenter.swift */; };
@@ -34,7 +35,6 @@
 		E2C55873264478C300F48CE6 /* ColorsManuallyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C55870264478C300F48CE6 /* ColorsManuallyPresenter.swift */; };
 		E2C55874264478C300F48CE6 /* ColorsManually.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2C55871264478C300F48CE6 /* ColorsManually.xib */; };
 		E2C558782644790B00F48CE6 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C558772644790B00F48CE6 /* LocationModel.swift */; };
-		E2C5587B2644792600F48CE6 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C5587A2644792600F48CE6 /* RealmManager.swift */; };
 		E2C5587E2644794400F48CE6 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C5587D2644794400F48CE6 /* UIColor.swift */; };
 		E2CD5E4B26411C4E00740D09 /* UIImage + Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CD5E4A26411C4E00740D09 /* UIImage + Crop.swift */; };
 		E2D6AB912646766800E6F1D2 /* ImageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D6AB902646766800E6F1D2 /* ImageFilter.swift */; };
@@ -52,6 +52,7 @@
 		20AC1C827D6BE43613D22F3C /* Pods_HyVal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HyVal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		754A53F01D30C0F75987212B /* Pods-HyVal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HyVal.release.xcconfig"; path = "Target Support Files/Pods-HyVal/Pods-HyVal.release.xcconfig"; sourceTree = "<group>"; };
 		86C7ADD782B0291781E0952A /* Pods-HyVal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HyVal.debug.xcconfig"; path = "Target Support Files/Pods-HyVal/Pods-HyVal.debug.xcconfig"; sourceTree = "<group>"; };
+		E26019E926525695000A059B /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		E2622CD0263AAE10001D02DD /* WelcomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePresenter.swift; sourceTree = "<group>"; };
 		E2622CD7263AB973001D02DD /* AssemblyModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyModuleBuilder.swift; sourceTree = "<group>"; };
 		E2622CDA263AC74E001D02DD /* BlankComparisonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankComparisonPresenter.swift; sourceTree = "<group>"; };
@@ -80,7 +81,6 @@
 		E2C55870264478C300F48CE6 /* ColorsManuallyPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorsManuallyPresenter.swift; sourceTree = "<group>"; };
 		E2C55871264478C300F48CE6 /* ColorsManually.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorsManually.xib; sourceTree = "<group>"; };
 		E2C558772644790B00F48CE6 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
-		E2C5587A2644792600F48CE6 /* RealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		E2C5587D2644794400F48CE6 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		E2CD5E4A26411C4E00740D09 /* UIImage + Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Crop.swift"; sourceTree = "<group>"; };
 		E2D6AB902646766800E6F1D2 /* ImageFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFilter.swift; sourceTree = "<group>"; };
@@ -123,6 +123,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E26019E72652566C000A059B /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				E26019E82652567B000A059B /* Services */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		E26019E82652567B000A059B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E26019E926525695000A059B /* RealmManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		E26F622E26404183003B7DF7 /* SampleComparison */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,7 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				E27A730726398E3A00EE2787 /* Application */,
-				E27A730826398E7100EE2787 /* Dependencies */,
+				E26019E72652566C000A059B /* Dependencies */,
 				E27A730A26398E9F00EE2787 /* Extensions */,
 				E27A730D26398ED200EE2787 /* Models */,
 				E27A730E26398EE100EE2787 /* Resourses */,
@@ -175,36 +191,12 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		E27A730826398E7100EE2787 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				E27A730926398E8800EE2787 /* Services */,
-			);
-			path = Dependencies;
-			sourceTree = "<group>";
-		};
-		E27A730926398E8800EE2787 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				E2C5587A2644792600F48CE6 /* RealmManager.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		E27A730A26398E9F00EE2787 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				E27A730C26398EBF00EE2787 /* UIKit */,
-				E27A730B26398EB300EE2787 /* Foundation */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		E27A730B26398EB300EE2787 /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Foundation;
 			sourceTree = "<group>";
 		};
 		E27A730C26398EBF00EE2787 /* UIKit */ = {
@@ -482,6 +474,7 @@
 				E26F623626404217003B7DF7 /* SampleComparisonPresenter.swift in Sources */,
 				E2D6B71926450ECC00ECAFB2 /* ColorCell.swift in Sources */,
 				E2C558782644790B00F48CE6 /* LocationModel.swift in Sources */,
+				E26019EA26525695000A059B /* RealmManager.swift in Sources */,
 				E2D6B71F2645227E00ECAFB2 /* Result.swift in Sources */,
 				E2665DA8264CC7C00016EA8C /* PSTColor.swift in Sources */,
 				E2C55873264478C300F48CE6 /* ColorsManuallyPresenter.swift in Sources */,
@@ -492,7 +485,6 @@
 				E2CD5E4B26411C4E00740D09 /* UIImage + Crop.swift in Sources */,
 				E2D6B72E2645549700ECAFB2 /* ColorDiffModel.swift in Sources */,
 				E27A73442639CC9800EE2787 /* GlobalConstants.swift in Sources */,
-				E2C5587B2644792600F48CE6 /* RealmManager.swift in Sources */,
 				E26F6231264041BC003B7DF7 /* SampleComparison.swift in Sources */,
 				E27A73292639A3E100EE2787 /* BlankComparison.swift in Sources */,
 				E2D6B723264522A900ECAFB2 /* ResultPresenter.swift in Sources */,
