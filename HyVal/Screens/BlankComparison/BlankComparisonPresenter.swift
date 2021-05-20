@@ -30,14 +30,17 @@ final class BlankComparisonPresenter: BlankViewPresenterProtocol {
     }
     
     func takePhoto() {
-        let imagePicker = UIImagePickerController()
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
-            imagePicker.sourceType = .camera
-            imagePicker.allowsEditing = true
-            view?.presentImagePickerController(imagePicker)
-        } else {
-            view?.presentAlert()
-        }
+//        let imagePicker = UIImagePickerController()
+//        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+//            imagePicker.sourceType = .camera
+//            imagePicker.allowsEditing = true
+//            view?.presentImagePickerController(imagePicker)
+//        } else {
+//            view?.presentAlert()
+//        }
+        
+        router?.showAriaCompareViewController(photoCameraImage: UIImage(named: "blank")!)
+        
     }
     
     func pushAriaCompare(photoCameraImage: UIImage) {

@@ -22,6 +22,7 @@ final class AreaCompare: UIViewController {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var pickerView: UIView!
     @IBOutlet private weak var continueButton: UIButton!
+    @IBOutlet private weak var viewForImage: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,13 +50,13 @@ final class AreaCompare: UIViewController {
         presenter.getColorForPickerView(pickerView: pickerView, imageView: imageView)
     }
     
-    @objc private func handlePanPressGesture(_ gesture: UIPanGestureRecognizer) {
+    @objc private func handlePanPressGesture(_ sender: UIPanGestureRecognizer) {
         
-        let panGesture = presenter.drawRectangle(gesture: gesture,
-                                                 imageView: imageView,
-                                                 pickerView: pickerView)
+        let translation = sender.translation(in: viewForImage)
+        pickerView.center = CGPoint(x:pickerView.center.x + translation.x,
+                                    y:pickerView.center.y + translation.y)
         
-        panGesture.setTranslation(CGPoint.zero, in: pickerView)
+        sender.setTranslation(.zero, in: viewForImage)
     }
     
     deinit {

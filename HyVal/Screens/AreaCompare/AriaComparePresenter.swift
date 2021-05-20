@@ -19,9 +19,6 @@ protocol AriaCompareViewPresenterProtocol: class {
          photoCameraImage: UIImage)
     
     func setImage()
-    func drawRectangle(gesture: UIPanGestureRecognizer,
-                       imageView: UIImageView,
-                       pickerView: UIView) -> UIPanGestureRecognizer
     func getColorForPickerView(pickerView: UIView, imageView: UIImageView)
     func setTitleFromRealm()
 }
@@ -52,28 +49,6 @@ final class AriaComparePresenter: AriaCompareViewPresenterProtocol {
         location = realmManager.getLocation()
         guard let roomName = location.last?.location else { return }
         view?.setTitle(roomName)
-    }
-    
-    func drawRectangle(gesture: UIPanGestureRecognizer,
-                       imageView: UIImageView,
-                       pickerView: UIView) -> UIPanGestureRecognizer {
-        
-        let point = gesture.location(in: imageView)
-        
-        let pickerHeight: CGFloat = pickerView.bounds.height
-        let pickerWidth : CGFloat = pickerView.bounds.height
-        
-        let superBounds = CGRect(x: imageView.bounds.origin.x + pickerHeight,
-                                 y: imageView.bounds.origin.y + pickerHeight,
-                                 width: imageView.bounds.size.width - 2*pickerWidth,
-                                 height: imageView.bounds.size.height - 2*pickerHeight)
-        
-        if (superBounds.contains(point)) {
-            let translation = gesture.translation(in: imageView)
-            gesture.view!.center = CGPoint(x: gesture.view!.center.x + translation.x,
-                                           y: gesture.view!.center.y + translation.y)
-        }
-        return gesture
     }
     
     func getColorForPickerView(pickerView: UIView, imageView: UIImageView){
