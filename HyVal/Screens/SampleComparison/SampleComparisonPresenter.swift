@@ -12,6 +12,8 @@ protocol SampleViewProtocol: class {
     func setTitle(_ titleRoom: String)
     func presentAlert()
     func presentImagePickerController(_ pickerController: UIImagePickerController)
+    func showSpinner()
+    func hideSpinner()
 }
 
 protocol SampleViewPresenterProtocol: class {
@@ -75,19 +77,17 @@ final class SampleComparisonPresenter: SampleViewPresenterProtocol {
         
         guard let diffColorModelWithRealm = realmManager.getColorDiff() else { return }
         
-        var targetCoefR: CGFloat = 0
-        var targetCoefG: CGFloat = 0
-        var targetCoefB: CGFloat = 0
-        var targetCoefAlpha: CGFloat = 0
+        view?.showSpinner()
         
-        guard let image = image.averageColor else { return }
-        image.getRed(&targetCoefR, green: &targetCoefG, blue: &targetCoefB, alpha: &targetCoefAlpha)
-        
-        let resultR = targetCoefR * CGFloat(diffColorModelWithRealm.diffR)
-        let resultG = targetCoefG * CGFloat(diffColorModelWithRealm.diffG)
-        let resultB = targetCoefB * CGFloat(diffColorModelWithRealm.diffB)
-        let resultColor = UIColor(displayP3Red: resultR, green: resultG, blue: resultB, alpha: targetCoefAlpha)
-        
-        router?.showColorsManually(color: resultColor)
+        let diff = (diffColorModelWithRealm.diffR, diffColorModelWithRealm.diffG, diffColorModelWithRealm.diffB)
+        DispatchQueue.global().async {
+            print("Run on background thread")
+            let newImage = ImageFilter.applyFilter(to: image, diff: diff)
+            DispatchQueue.main.async { [weak self] in
+                print("We finished that.")
+                self?.view?.hideSpinner()
+                self?.router?.showColorsManually(image: newImage!)
+            }
+        }
     }
 }

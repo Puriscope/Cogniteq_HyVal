@@ -18,7 +18,7 @@ protocol RouterProtocol: RouterMain {
     func popToRoot()
     func showAriaCompareViewController(photoCameraImage: UIImage)
     func showSampleViewController()
-    func showColorsManually(color: UIColor)
+    func showColorsManually(image: UIImage)
     func showResultPage()
 }
 
@@ -60,9 +60,9 @@ class Router: RouterProtocol {
         }
     }
     
-    func showColorsManually(color: UIColor) {
+    func showColorsManually(image: UIImage) {
         if let navigationController = navigationController {
-            guard let colorsManualleViewController = assemblyBuilder?.createColorsManually(color: color, router: self) else { return }
+            guard let colorsManualleViewController = assemblyBuilder?.createColorsManually(image: image, router: self) else { return }
             navigationController.pushViewController(colorsManualleViewController, animated: true)
         }
     }

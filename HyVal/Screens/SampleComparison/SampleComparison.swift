@@ -22,6 +22,7 @@ class SampleComparison: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var viewLayer: UIView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +99,14 @@ extension SampleComparison: SampleViewProtocol {
     func presentImagePickerController(_ pickerController: UIImagePickerController) {
         pickerController.delegate = self
         self.present(pickerController, animated: true)
+    }
+    
+    func showSpinner() {
+        spinner.isHidden = false
+    }
+    
+    func hideSpinner() {
+        spinner.isHidden = true
     }
 }
 

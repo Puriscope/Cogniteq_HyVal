@@ -28,7 +28,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZDM-jA-7LI">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZDM-jA-7LI" customClass="UIImageView">
                     <rect key="frame" x="20" y="147" width="374" height="298.5"/>
                     <color key="backgroundColor" systemColor="systemOrangeColor"/>
                 </view>

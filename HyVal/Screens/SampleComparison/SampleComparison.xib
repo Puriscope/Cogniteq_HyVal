@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="continueButton" destination="SCH-jt-WWO" id="Ih8-kv-agT"/>
                 <outlet property="imageView" destination="jCD-Cg-y9f" id="hhZ-Hn-kNa"/>
+                <outlet property="spinner" destination="STC-gW-R5P" id="ILt-mR-k80"/>
                 <outlet property="textField" destination="RTk-4L-YLU" id="T2O-UH-DUS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewLayer" destination="Hhr-Y5-RH7" id="P5Y-LY-hgx"/>
@@ -49,6 +50,11 @@
                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                 </textField>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="STC-gW-R5P">
+                    <rect key="frame" x="197" y="438" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="color" red="0.97441023589999998" green="0.31869044899999999" blue="0.34309184549999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </activityIndicatorView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hhr-Y5-RH7">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>

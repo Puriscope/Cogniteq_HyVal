@@ -9,7 +9,7 @@ import UIKit
 
 public class ImageFilter {
 
-    static func applyFilter(to image: UIImage, diff: ColorDiffModel) -> UIImage? {
+    static func applyFilter(to image: UIImage, diff: (r:Float, g:Float, b:Float)) -> UIImage? {
         guard let cgImage = image.cgImage else { return nil }
         
         // Redraw image for correct pixel format
@@ -53,14 +53,32 @@ public class ImageFilter {
             }
         }
         
+        func toByteArray<T>(_ value: T) -> [UInt8] {
+                          var value = value
+                          return withUnsafePointer(to: &value) {
+                              $0.withMemoryRebound(to: UInt8.self, capacity: MemoryLayout<T>.size) {
+                                  Array(UnsafeBufferPointer(start: $0, count: MemoryLayout<T>.size))
+                              }
+                          }
+                      }
+        
         for y in 0..<height {
             for x in 0..<width {
                 let index = y * width + x
                 var pixel = pixels[index]
+                                
+                let r = Float(bitPattern: UInt32(bigEndian: pixel.red.data.withUnsafeBytes { $0.pointee } ))
+                let g = Float(bitPattern: UInt32(bigEndian: pixel.green.data.withUnsafeBytes { $0.pointee } ))
+                let b = Float(bitPattern: UInt32(bigEndian: pixel.blue.data.withUnsafeBytes { $0.pointee } ))
+                
+                
+                let deltaComponentR = UnsafeRawPointer(toByteArray( r * diff.r)).assumingMemoryBound(to: UInt8.self).pointee.littleEndian
+                let deltaComponentG = UnsafeRawPointer(toByteArray( g * diff.g)).assumingMemoryBound(to: UInt8.self).pointee.littleEndian
+                let deltaComponentB = UnsafeRawPointer(toByteArray( b * diff.b)).assumingMemoryBound(to: UInt8.self).pointee.littleEndian
     
-                pixel.red += UInt8(diff.diffR)
-                pixel.blue += UInt8(diff.diffB)
-                pixel.green += UInt8(diff.diffG)
+                pixel.red = deltaComponentR
+                pixel.blue = deltaComponentB
+                pixel.green = deltaComponentG
 
                 pixels[index] = pixel
             }
@@ -124,3 +142,10 @@ public struct Pixel {
         }
     }
 }
+
+extension UInt8 {
+        var data: Data {
+            var int = self
+            return Data(bytes: &int, count: MemoryLayout<UInt8>.size)
+        }
+    }
