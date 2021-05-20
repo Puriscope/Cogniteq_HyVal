@@ -53,9 +53,27 @@ final class AreaCompare: UIViewController {
     @objc private func handlePanPressGesture(_ sender: UIPanGestureRecognizer) {
         
         let translation = sender.translation(in: viewForImage)
-        pickerView.center = CGPoint(x:pickerView.center.x + translation.x,
-                                    y:pickerView.center.y + translation.y)
+        guard let superview = pickerView.superview else { return }
+        var xOffset: CGFloat = 0
+        var yOffset: CGFloat = 0
         
+        if pickerView.center.x + translation.x <= pickerView.frame.width {
+            xOffset = pickerView.frame.width
+        } else if pickerView.center.x + translation.x > superview.frame.width - pickerView.frame.width {
+            xOffset = superview.frame.width - pickerView.frame.width
+        } else {
+            xOffset = pickerView.center.x + translation.x
+        }
+        
+        if pickerView.center.y + translation.y <= pickerView.frame.height {
+            yOffset = pickerView.frame.height
+        } else if pickerView.center.y + translation.y > superview.frame.height - pickerView.frame.height {
+            yOffset = superview.frame.height - pickerView.frame.height
+        } else {
+            yOffset = pickerView.center.y + translation.y
+        }
+        
+        pickerView.center = CGPoint(x: xOffset, y: yOffset)
         sender.setTranslation(.zero, in: viewForImage)
     }
     
