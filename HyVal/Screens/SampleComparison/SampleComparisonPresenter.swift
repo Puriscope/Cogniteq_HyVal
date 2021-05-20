@@ -45,7 +45,7 @@ final class SampleComparisonPresenter: SampleViewPresenterProtocol {
     
     func takePhoto() {
         let imagePicker = UIImagePickerController()
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
             imagePicker.sourceType = .camera
             imagePicker.allowsEditing = true
             view?.presentImagePickerController(imagePicker)

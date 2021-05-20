@@ -21,16 +21,19 @@ class SampleComparison: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var viewLayer: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupView()
+        self.navigationController?.isNavigationBarHidden = true
         openPhotoCamera()
+        setupView()
         presenter.setTitleFromRealm()
     }
     
     private func setupView() {
+        view.bringSubviewToFront(viewLayer)
         self.navigationItem.setHidesBackButton(true, animated: false)
         title = UserDefaults.standard.string(forKey: GlobalConstants.name)
         continueButton.layer.cornerRadius = Constants.buttonRadius
@@ -103,7 +106,20 @@ extension SampleComparison: UIImagePickerControllerDelegate, UINavigationControl
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         picker.dismiss(animated: true, completion: nil)
+        
+        showBackround(viewLayer, navigationController)
+        
         guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
         imageView.image = image
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+        showBackround(viewLayer, navigationController)
+    }
+    
+    private func showBackround(_ view: UIView, _ navigationController: UINavigationController?) {
+        view.removeFromSuperview()
+        navigationController?.isNavigationBarHidden = false
     }
 }

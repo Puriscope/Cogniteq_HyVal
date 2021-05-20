@@ -75,7 +75,6 @@ class RealmManagerImp: RealmManager {
             
             mainRealm.delete(location)
         }
-        
     }
     
     func deleteColorDiff() {
@@ -85,5 +84,4 @@ class RealmManagerImp: RealmManager {
             mainRealm.delete(diffColor)
         }
     }
-    
 }

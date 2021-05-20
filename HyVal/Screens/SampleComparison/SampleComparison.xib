@@ -15,6 +15,7 @@
                 <outlet property="imageView" destination="jCD-Cg-y9f" id="hhZ-Hn-kNa"/>
                 <outlet property="textField" destination="RTk-4L-YLU" id="T2O-UH-DUS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewLayer" destination="Hhr-Y5-RH7" id="P5Y-LY-hgx"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -48,21 +49,29 @@
                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                 </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hhr-Y5-RH7">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="Hhr-Y5-RH7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="GSz-wP-a2G"/>
                 <constraint firstItem="RTk-4L-YLU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="KKW-6k-i9h"/>
                 <constraint firstItem="jCD-Cg-y9f" firstAttribute="top" secondItem="RTk-4L-YLU" secondAttribute="bottom" constant="30" id="Mdn-XX-y12"/>
                 <constraint firstItem="jCD-Cg-y9f" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Spf-eU-TRt"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="RTk-4L-YLU" secondAttribute="trailing" constant="20" id="TGX-Lm-nL1"/>
                 <constraint firstItem="SCH-jt-WWO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Tth-7j-H7l"/>
+                <constraint firstAttribute="bottom" secondItem="Hhr-Y5-RH7" secondAttribute="bottom" id="UqQ-ws-Rb2"/>
+                <constraint firstItem="Hhr-Y5-RH7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dg7-ry-JM9"/>
                 <constraint firstItem="RTk-4L-YLU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="j54-LM-Zr6"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Hhr-Y5-RH7" secondAttribute="trailing" id="koI-9J-STW"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jCD-Cg-y9f" secondAttribute="trailing" constant="20" id="pbI-j5-TXN"/>
                 <constraint firstItem="jCD-Cg-y9f" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="2/3" id="qeh-sZ-Ub5"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SCH-jt-WWO" secondAttribute="bottom" constant="20" id="u0I-ZK-iz3"/>
             </constraints>
-            <point key="canvasLocation" x="-196" y="120"/>
+            <point key="canvasLocation" x="-197.10144927536234" y="119.86607142857142"/>
         </view>
     </objects>
     <resources>

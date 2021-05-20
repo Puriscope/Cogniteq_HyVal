@@ -14,7 +14,6 @@ class Result: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sendButton: UIButton!
-    @IBOutlet weak var addSampleButton: UIButton!
     @IBOutlet weak var restartButton: UIButton!
     
     override func viewDidLoad() {
@@ -40,10 +39,6 @@ class Result: UIViewController {
     
     @IBAction func sendActionButton(_ sender: UIButton) {
         presenter.shared()
-    }
-    
-    @IBAction func addSampleActionButton(_ sender: UIButton) {
-        presenter.showWelcomeScreen()
     }
     
     @IBAction func restartActionButton(_ sender: UIButton) {
