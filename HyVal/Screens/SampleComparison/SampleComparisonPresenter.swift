@@ -23,7 +23,7 @@ protocol SampleViewPresenterProtocol: class {
     func setTitleFromRealm()
     func takePhoto()
     func saveSampleName(_ textField: UITextField)
-    func pressedContinueButton(image: UIImage)
+    func pressedContinueButton(pickerView: UIView, imageView: UIImageView)
 }
 
 final class SampleComparisonPresenter: SampleViewPresenterProtocol {
@@ -61,33 +61,47 @@ final class SampleComparisonPresenter: SampleViewPresenterProtocol {
         textFieldSampleName = sampleName
     }
     
-    func pressedContinueButton(image: UIImage) {
+    func pressedContinueButton(pickerView: UIView, imageView: UIImageView) {
         
         if textFieldSampleName == nil || textFieldSampleName?.isEmpty == true {
-            view?.presentAlert()
+            self.view?.presentAlert()
         } else {
             guard let sampleName = textFieldSampleName else { return }
             realmManager.updateModel(sampleName: sampleName)
             
-            applyColorDiffToPicture(image: image)
+            let pickerAbsoluteFrame = pickerView.convert(pickerView.bounds, to: imageView)
+            
+            let im1 = imageWithView(view: imageView)
+            guard let im2 = im1?.crop(rect: pickerAbsoluteFrame) else { return }
+            
+            applyColorDiffToPicture(image: im2)
         }
+    }
+    
+    func imageWithView(view: UIView) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
+        defer { UIGraphicsEndImageContext() }
+        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
     
     func applyColorDiffToPicture(image: UIImage) {
         
         guard let diffColorModelWithRealm = realmManager.getColorDiff() else { return }
         
-        view?.showSpinner()
+        var targetCoefR: CGFloat = 0
+        var targetCoefG: CGFloat = 0
+        var targetCoefB: CGFloat = 0
+        var targetCoefAlpha: CGFloat = 0
         
-        let diff = (diffColorModelWithRealm.diffR, diffColorModelWithRealm.diffG, diffColorModelWithRealm.diffB)
-        DispatchQueue.global().async {
-            print("Run on background thread")
-            let newImage = ImageFilter.applyFilter(to: image, diff: diff)
-            DispatchQueue.main.async { [weak self] in
-                print("We finished that.")
-                self?.view?.hideSpinner()
-                self?.router?.showColorsManually(image: newImage!)
-            }
-        }
+        guard let image = image.averageColor else { return }
+        image.getRed(&targetCoefR, green: &targetCoefG, blue: &targetCoefB, alpha: &targetCoefAlpha)
+        
+        let resultR = targetCoefR * CGFloat(diffColorModelWithRealm.diffR)
+        let resultG = targetCoefG * CGFloat(diffColorModelWithRealm.diffG)
+        let resultB = targetCoefB * CGFloat(diffColorModelWithRealm.diffB)
+        let resultColor = UIColor(displayP3Red: resultR, green: resultG, blue: resultB, alpha: targetCoefAlpha)
+        
+        router?.showColorsManually(color: resultColor)
     }
 }

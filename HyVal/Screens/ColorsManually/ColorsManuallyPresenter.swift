@@ -11,11 +11,11 @@ import UIKit
 
 protocol ColorsManuallyViewProtocol: class {
     func setTitle(location: LocationModel)
-    func setImage(image: UIImage)
+    func setColor(color: UIColor)
 }
 
 protocol ColorsManuallyViewPresenterProtocol: class {
-    init(view: ColorsManuallyViewProtocol, router: RouterProtocol, image: UIImage)
+    init(view: ColorsManuallyViewProtocol, router: RouterProtocol, color: UIColor)
     
     func setTitleFromRealm()
     func setColorForPicker()
@@ -30,7 +30,7 @@ final class ColorsManuallyPresenter: ColorsManuallyViewPresenterProtocol {
     private weak var view: ColorsManuallyViewProtocol?
     private var router: RouterProtocol?
     private let realmManager: RealmManager = RealmManagerImp()
-    private let image: UIImage
+    private let color: UIColor
     private var currentIndexItem = Int()
     
     private let colorsBlank = [PSTColor(color: UIColor.pink(), pst: 10),
@@ -54,10 +54,10 @@ final class ColorsManuallyPresenter: ColorsManuallyViewPresenterProtocol {
                               PSTColor(color: UIColor.yellow3(), pst: 190)
     ]
     
-    required init(view: ColorsManuallyViewProtocol, router: RouterProtocol, image: UIImage) {
+    required init(view: ColorsManuallyViewProtocol, router: RouterProtocol, color: UIColor) {
         self.view = view
         self.router = router
-        self.image = image
+        self.color = color
     }
     
     func setTitleFromRealm() {
@@ -67,7 +67,7 @@ final class ColorsManuallyPresenter: ColorsManuallyViewPresenterProtocol {
     }
     
     func setColorForPicker() {
-        view?.setImage(image: image)
+        view?.setColor(color: color)
     }
     
     func numberOfItemsInSection() -> Int {

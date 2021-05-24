@@ -13,11 +13,15 @@ class SampleComparison: UIViewController {
     
     private struct Constants {
         static let buttonRadius: CGFloat = 10
+        static let borderForPickerView: CGFloat = 3
+        static let colorForPickerView = UIColor.red.cgColor
     }
     
     // MARK: - Properties
     var presenter: SampleViewPresenterProtocol!
     
+    @IBOutlet weak var pickerView: UIView!
+    @IBOutlet weak var viewForImage: UIView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var continueButton: UIButton!
@@ -27,19 +31,27 @@ class SampleComparison: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.isNavigationBarHidden = true
         openPhotoCamera()
         setupView()
         presenter.setTitleFromRealm()
     }
     
     private func setupView() {
+        self.navigationController?.isNavigationBarHidden = true
         view.bringSubviewToFront(viewLayer)
         self.navigationItem.setHidesBackButton(true, animated: false)
         title = UserDefaults.standard.string(forKey: GlobalConstants.name)
         continueButton.layer.cornerRadius = Constants.buttonRadius
         self.hideKeyboardWhenTappedAround()
         setupTextField()
+        
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanPressGesture))
+        
+        pickerView.addGestureRecognizer(gesture)
+        pickerView.layer.borderWidth = Constants.borderForPickerView
+        pickerView.layer.borderColor = Constants.colorForPickerView
+        pickerView.backgroundColor = .clear
+        imageView.addSubview(pickerView)
     }
     
     private func setupTextField() {
@@ -65,8 +77,8 @@ class SampleComparison: UIViewController {
     
     @IBAction func continueButtonAction(_ sender: UIButton) {
         
-        if let image = imageView.image {
-            presenter.pressedContinueButton(image: image)
+        if imageView.image != nil {
+            presenter.pressedContinueButton(pickerView: pickerView, imageView: imageView)
         } else {
             presenter.takePhoto()
         }
@@ -74,6 +86,33 @@ class SampleComparison: UIViewController {
     
     deinit {
         print("Bye: \(self) ")
+    }
+    
+    @objc private func handlePanPressGesture(_ sender: UIPanGestureRecognizer) {
+        
+        let translation = sender.translation(in: viewForImage)
+        guard let superview = pickerView.superview else { return }
+        var xOffset: CGFloat = 0
+        var yOffset: CGFloat = 0
+        
+        if pickerView.center.x + translation.x <= pickerView.frame.width {
+            xOffset = pickerView.frame.width
+        } else if pickerView.center.x + translation.x > superview.frame.width - pickerView.frame.width {
+            xOffset = superview.frame.width - pickerView.frame.width
+        } else {
+            xOffset = pickerView.center.x + translation.x
+        }
+        
+        if pickerView.center.y + translation.y <= pickerView.frame.height {
+            yOffset = pickerView.frame.height
+        } else if pickerView.center.y + translation.y > superview.frame.height - pickerView.frame.height {
+            yOffset = superview.frame.height - pickerView.frame.height
+        } else {
+            yOffset = pickerView.center.y + translation.y
+        }
+        
+        pickerView.center = CGPoint(x: xOffset, y: yOffset)
+        sender.setTranslation(.zero, in: viewForImage)
     }
 }
 

@@ -12,7 +12,7 @@ protocol AssemblyBuilderProtocol {
     func createBlankModule(router: RouterProtocol) -> UIViewController
     func createAriaCompareModule(photoCameraImage: UIImage, router: RouterProtocol) -> UIViewController
     func createSampleModule(router: RouterProtocol) -> UIViewController
-    func createColorsManually(image: UIImage, router: RouterProtocol) -> UIViewController
+    func createColorsManually(color: UIColor, router: RouterProtocol) -> UIViewController
     func createResult(router: RouterProtocol) -> UIViewController
 }
 
@@ -46,9 +46,9 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
         return view
     }
     
-    func createColorsManually(image: UIImage, router: RouterProtocol) -> UIViewController {
+    func createColorsManually(color: UIColor, router: RouterProtocol) -> UIViewController {
         let view = ColorsManually()
-        let presenter = ColorsManuallyPresenter(view: view, router: router, image: image)
+        let presenter = ColorsManuallyPresenter(view: view, router: router, color: color)
         view.presenter = presenter
         return view
     }

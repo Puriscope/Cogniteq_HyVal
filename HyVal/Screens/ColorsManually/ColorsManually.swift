@@ -12,7 +12,7 @@ final class ColorsManually: UIViewController {
     // MARK: - Properties
     var presenter: ColorsManuallyViewPresenterProtocol!
 
-    @IBOutlet private weak var pickerView: UIImageView!
+    @IBOutlet private weak var pickerView: UIView!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var continueButton: UIButton!
     private var collectionViewWidth: CGFloat = 0
@@ -48,8 +48,8 @@ extension ColorsManually: ColorsManuallyViewProtocol {
     }
     
     
-    func setImage(image: UIImage) {
-        pickerView.image = image
+    func setColor(color: UIColor) {
+        pickerView.backgroundColor = color
     }
 }
 

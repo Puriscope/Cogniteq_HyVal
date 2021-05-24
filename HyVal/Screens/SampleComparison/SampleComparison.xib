@@ -13,9 +13,11 @@
             <connections>
                 <outlet property="continueButton" destination="SCH-jt-WWO" id="Ih8-kv-agT"/>
                 <outlet property="imageView" destination="jCD-Cg-y9f" id="hhZ-Hn-kNa"/>
+                <outlet property="pickerView" destination="7kb-r1-G2I" id="WI3-RO-vRZ"/>
                 <outlet property="spinner" destination="STC-gW-R5P" id="ILt-mR-k80"/>
                 <outlet property="textField" destination="RTk-4L-YLU" id="T2O-UH-DUS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewForImage" destination="P87-GX-L7U" id="hAB-1B-Yuv"/>
                 <outlet property="viewLayer" destination="Hhr-Y5-RH7" id="P5Y-LY-hgx"/>
             </connections>
         </placeholder>
@@ -24,10 +26,32 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jCD-Cg-y9f">
-                    <rect key="frame" x="20" y="141.5" width="374" height="597.5"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P87-GX-L7U" userLabel="ViewForImage">
+                    <rect key="frame" x="20" y="134" width="374" height="638"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7kb-r1-G2I" userLabel="PickerView">
+                            <rect key="frame" x="152" y="294" width="70" height="50"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="Z6X-SJ-n5n"/>
+                                <constraint firstAttribute="width" constant="70" id="n0U-BA-X3u"/>
+                            </constraints>
+                        </view>
+                        <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="jCD-Cg-y9f">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="638"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </imageView>
+                    </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </imageView>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="jCD-Cg-y9f" secondAttribute="trailing" id="1ju-pT-gcS"/>
+                        <constraint firstItem="jCD-Cg-y9f" firstAttribute="leading" secondItem="P87-GX-L7U" secondAttribute="leading" id="7Cu-nf-60K"/>
+                        <constraint firstItem="jCD-Cg-y9f" firstAttribute="top" secondItem="P87-GX-L7U" secondAttribute="top" id="LJf-r6-Fqk"/>
+                        <constraint firstItem="7kb-r1-G2I" firstAttribute="centerX" secondItem="P87-GX-L7U" secondAttribute="centerX" id="OSS-Um-eT9"/>
+                        <constraint firstAttribute="bottom" secondItem="jCD-Cg-y9f" secondAttribute="bottom" id="XUV-tx-rug"/>
+                        <constraint firstItem="7kb-r1-G2I" firstAttribute="centerY" secondItem="P87-GX-L7U" secondAttribute="centerY" id="xMI-0H-amr"/>
+                    </constraints>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCH-jt-WWO">
                     <rect key="frame" x="147" y="792" width="120" height="50"/>
                     <color key="backgroundColor" red="0.68565899129999996" green="0.70307111739999995" blue="0.74602204559999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -43,18 +67,21 @@
                         <action selector="continueButtonAction:" destination="-1" eventType="touchUpInside" id="1f8-XY-jXR"/>
                     </connections>
                 </button>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter sample name" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="RTk-4L-YLU">
-                    <rect key="frame" x="20" y="74" width="374" height="37.5"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                </textField>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="STC-gW-R5P">
                     <rect key="frame" x="197" y="438" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="color" red="0.97441023589999998" green="0.31869044899999999" blue="0.34309184549999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </activityIndicatorView>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter sample name" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="RTk-4L-YLU">
+                    <rect key="frame" x="20" y="74" width="374" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="feu-cx-7Rj"/>
+                    </constraints>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hhr-Y5-RH7">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -63,24 +90,25 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="SCH-jt-WWO" firstAttribute="top" secondItem="P87-GX-L7U" secondAttribute="bottom" constant="20" id="9xJ-ss-VUn"/>
                 <constraint firstItem="Hhr-Y5-RH7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="GSz-wP-a2G"/>
                 <constraint firstItem="RTk-4L-YLU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="KKW-6k-i9h"/>
-                <constraint firstItem="jCD-Cg-y9f" firstAttribute="top" secondItem="RTk-4L-YLU" secondAttribute="bottom" constant="30" id="Mdn-XX-y12"/>
-                <constraint firstItem="jCD-Cg-y9f" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Spf-eU-TRt"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="RTk-4L-YLU" secondAttribute="trailing" constant="20" id="TGX-Lm-nL1"/>
+                <constraint firstItem="P87-GX-L7U" firstAttribute="top" secondItem="RTk-4L-YLU" secondAttribute="bottom" constant="20" id="TqQ-3h-vd7"/>
                 <constraint firstItem="SCH-jt-WWO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Tth-7j-H7l"/>
                 <constraint firstAttribute="bottom" secondItem="Hhr-Y5-RH7" secondAttribute="bottom" id="UqQ-ws-Rb2"/>
                 <constraint firstItem="Hhr-Y5-RH7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dg7-ry-JM9"/>
                 <constraint firstItem="RTk-4L-YLU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="j54-LM-Zr6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Hhr-Y5-RH7" secondAttribute="trailing" id="koI-9J-STW"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jCD-Cg-y9f" secondAttribute="trailing" constant="20" id="pbI-j5-TXN"/>
-                <constraint firstItem="jCD-Cg-y9f" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="2/3" id="qeh-sZ-Ub5"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="P87-GX-L7U" secondAttribute="trailing" constant="20" id="n1p-dg-v04"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SCH-jt-WWO" secondAttribute="bottom" constant="20" id="u0I-ZK-iz3"/>
+                <constraint firstItem="P87-GX-L7U" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="wbv-67-FbN"/>
             </constraints>
             <point key="canvasLocation" x="-197.10144927536234" y="119.86607142857142"/>
         </view>
     </objects>
     <resources>
+        <image name="blank" width="185" height="222"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
